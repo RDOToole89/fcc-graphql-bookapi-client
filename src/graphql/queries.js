@@ -1,5 +1,5 @@
 // import { gql } from 'apollo-boost';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const getBooksQuery = gql`
   query AllBooks {

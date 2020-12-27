@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { getAuthorsQuery } from '../graphql/queries';
+import { addBookMutation, getAuthorsQuery } from '../graphql/queries';
+import { ADD_BOOK } from '../graphql/mutations';
+import { useMutation } from '@apollo/client';
 
 function AddBook(props) {
+  const [addBook, { bookData }] = useMutation(ADD_BOOK);
+
   const [newBook, setNewBook] = useState({
     name: '',
     genre: '',
@@ -18,8 +22,13 @@ function AddBook(props) {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    addBook({
+      variables: { name: newBook.name, genre: newBook.genre, authorId: newBook.authorId },
+    });
+
     console.log('New Book Added', newBook);
   };
+
   return (
     <form onSubmit={handleSubmitForm} id='add-book'>
       <div className='field'>
