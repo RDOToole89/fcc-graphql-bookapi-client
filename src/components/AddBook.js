@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_AUTHORS } from '../graphql/queries';
+import { GET_AUTHORS, GET_BOOKS } from '../graphql/queries';
 import { ADD_BOOK } from '../graphql/mutations';
 
 function AddBook() {
@@ -27,6 +27,14 @@ function AddBook() {
     console.log('New Book Added', newBook);
     addBook({
       variables: { name: newBook.name, genre: newBook.genre, authorId: newBook.authorId },
+      // refetches all queries specified in the array on new book creation
+      refetchQueries: [{ query: GET_BOOKS }],
+    });
+
+    setNewBook({
+      name: '',
+      genre: '',
+      authorId: '',
     });
   };
 
