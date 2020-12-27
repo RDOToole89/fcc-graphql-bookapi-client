@@ -1,13 +1,15 @@
 import React from 'react';
-// gql is an interpreter of GraphQL queries
-// import { gql } from 'apollo-boost';
-import { graphql } from 'react-apollo';
-import { getBooksQuery } from '../graphql/queries';
+import { GET_BOOKS } from '../graphql/queries';
+import { useQuery } from '@apollo/client';
 
-function Booklist(props) {
-  // console.log('BOOKLIST PROPS', props);
-  const { books } = props.data;
-  const { loading } = props.data;
+function Booklist() {
+  const { loading, error, data } = useQuery(GET_BOOKS);
+
+  if (error) {
+    return <p>Error! ${error.message}</p>;
+  }
+
+  const { books } = data || [];
 
   return (
     <div>
@@ -18,7 +20,4 @@ function Booklist(props) {
   );
 }
 
-// using the graphql function to wrap the getBooksQuery to the booklist components
-// allowing you to find the getBooksQuery in the props
-// oldskool react component method => see addBook
-export default graphql(getBooksQuery)(Booklist);
+export default Booklist;

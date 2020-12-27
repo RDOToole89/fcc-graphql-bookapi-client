@@ -1,7 +1,6 @@
-// import { gql } from 'apollo-boost';
 import { gql } from '@apollo/client';
 
-export const getBooksQuery = gql`
+export const GET_BOOKS = gql`
   query AllBooks {
     books {
       name
@@ -10,7 +9,7 @@ export const getBooksQuery = gql`
   }
 `;
 
-export const getAuthorsQuery = gql`
+export const GET_AUTHORS = gql`
   query AllAuthors {
     authors {
       name
@@ -18,13 +17,3 @@ export const getAuthorsQuery = gql`
     }
   }
 `;
-
-// with apollo-boost
-// const getBooksQuery = gql`
-//   {
-//     books {
-//       name
-//       id
-//     }
-//   }
-// `;
