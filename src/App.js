@@ -3,6 +3,7 @@ import ApolloClient from 'apollo-boost';
 // ApolloProvider interprets incoming GQL Data
 // We wrap the entire app in the provider
 import { ApolloProvider } from 'react-apollo';
+import AddBook from './components/AddBook';
 
 // apollo client setup
 // we setup the client as defined in the backend this is what the ApolloProvider connects to
@@ -17,6 +18,7 @@ function App() {
       <div id='main'>
         <h1>Ninja's Reading List</h1>
         <Booklist />
+        <AddBook />
       </div>
     </ApolloProvider>
   );
