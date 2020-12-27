@@ -1,19 +1,11 @@
 import React from 'react';
 // gql is an interpreter of GraphQL queries
-import { gql } from 'apollo-boost';
+// import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-
-const getBooksQuery = gql`
-  {
-    books {
-      name
-      id
-    }
-  }
-`;
+import { getBooksQuery } from '../graphql/queries';
 
 function Booklist(props) {
-  console.log('BOOKLIST PROPS', props);
+  // console.log('BOOKLIST PROPS', props);
   const { books } = props.data;
   const { loading } = props.data;
 

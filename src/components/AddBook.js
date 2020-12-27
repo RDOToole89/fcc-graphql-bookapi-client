@@ -1,27 +1,16 @@
 import React from 'react';
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-
-const getAuthorsQuery = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`;
+import { getAuthorsQuery } from '../graphql/queries';
 
 function AddBook(props) {
+  // useQuery Hook returns an object from Apollo Client that contains loading , error
+  // , and data properties you can use to render your UI.
   const { loading, error, data } = useQuery(getAuthorsQuery);
+  const { authors } = data || [];
 
-  if (loading) return 'Loading...';
   if (error) {
     return <p>Error! ${error.message}</p>;
   }
-
-  const { authors } = data;
-
-  console.log('AUTHOR DATA', data);
 
   return (
     <form id='add-book'>
@@ -39,9 +28,15 @@ function AddBook(props) {
         <label>Author:</label>
         <select>
           <option>Select Author</option>
-          {authors.map((x) => (
-            <option key={x.id}>{x.name}</option>
-          ))}
+          {loading ? (
+            <option disabled>Loading authors...</option>
+          ) : (
+            authors.map((x) => (
+              <option key={x.id} value={x.id}>
+                {x.name}
+              </option>
+            ))
+          )}
         </select>
       </div>
 
