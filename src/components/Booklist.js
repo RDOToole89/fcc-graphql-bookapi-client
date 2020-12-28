@@ -7,7 +7,7 @@ function Booklist() {
   const [bookId, setBookId] = useState('');
   const { loading, error, data } = useQuery(GET_BOOKS);
 
-  console.log(bookId);
+  // console.log(bookId);
 
   if (error) {
     return <p>Error! ${error.message}</p>;
@@ -28,7 +28,7 @@ function Booklist() {
           ))
         )}
       </ul>
-      <BookDetails />
+      <BookDetails bookId={bookId} />
     </div>
   );
 }

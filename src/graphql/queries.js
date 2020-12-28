@@ -10,7 +10,7 @@ export const GET_BOOKS = gql`
 `;
 
 export const GET_BOOK = gql`
-  query SingleBook($id: String!) {
+  query SingleBook($id: ID!) {
     book(id: $id) {
       id
       name

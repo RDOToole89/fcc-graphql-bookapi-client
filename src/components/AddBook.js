@@ -24,7 +24,6 @@ function AddBook() {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    console.log('New Book Added', newBook);
     addBook({
       variables: { name: newBook.name, genre: newBook.genre, authorId: newBook.authorId },
       // refetches all queries specified in the array on new book creation
